@@ -18,10 +18,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.spring.interview.SpringInterviewQaApplication;
 import com.spring.interview.configs.TestServiceConfiguration;
 
-@ActiveProfiles("teststart")
+@ActiveProfiles("teststart") //switch: start load testserviceconfiguration bean loading, get mock instance of testServie
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = TestServiceConfiguration.class)
+@ContextConfiguration(classes = TestServiceConfiguration.class) //load configuration java file
 class TestServiceTest2 {
 
 	@Autowired
