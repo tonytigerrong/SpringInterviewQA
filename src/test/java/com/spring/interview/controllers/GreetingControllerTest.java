@@ -27,23 +27,40 @@ class GreetingControllerTest {
 	@Autowired
 	private TestRestTemplate restTemplate;
 	
+		
 	/**
-	 * intigrate test for get method
+	 * integrate test for http get method
 	 * http://localhost:8080/greeting?name=
 	 * @throws URISyntaxException 
 	 */
 	@Test
-	void test() throws URISyntaxException {
+	void testByTemplateExchange() throws URISyntaxException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpMethod method = HttpMethod.GET;
-		String url = "http://localhost:" + this.port + "/greeting?name=tony";
+		
 		HttpEntity<String> request = new HttpEntity(null, (MultiValueMap) headers);
+		String url = "http://localhost:" + this.port + "/greeting?name=tony";
 		URI uri = new URI(url);
+		
+
 		//post request to URI
 		ResponseEntity<String> response = this.restTemplate.exchange(uri, method, request,String.class);
 		String body = response.getBody();
+		System.out.println(body);
 		Assertions.assertTrue(body.indexOf("Hello")>0);
+		Assertions.assertTrue(body.indexOf("<html>")>0);
+	}
+	
+	/**
+	 * integrate test for http get method
+	 * http://localhost:8080/greeting?name=
+	 * @throws URISyntaxException
+	 */
+	@Test
+	void testByTemplateGetForObject() throws URISyntaxException {
+		String url = "http://localhost:" + this.port + "/greeting?name=tony";
+		this.restTemplate.getForObject(url , String.class).contains("Hello");
 	}
 
 }
