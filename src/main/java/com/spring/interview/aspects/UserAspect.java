@@ -29,4 +29,14 @@ public class UserAspect {
 	public void afterService_GetUserByName(JoinPoint joinPoint) {
 		System.out.println("*******After execute getUserByName method of UserService "+joinPoint);
 	}
+	
+	/**
+	@Pointcut( "set(* *)") // this line is error, set expression is wrong
+	public void fieldAspect() {}
+	
+	@After("fieldAspect()")
+	public void afterFieldSignatureChanged() {
+		System.out.println("******* After set field signature ");
+	}
+	*/
 }

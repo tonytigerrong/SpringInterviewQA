@@ -13,11 +13,13 @@ public class UserService {
 	@Autowired
 	BaseDao dao;
 	
+	private boolean signature = true;
 	public List<User> getAllUsers() {
 		return dao.getAllUsers();
 	}
 	
 	public User getUserByName(String first, String last) {
+		this.signature = this.signature == true ? false : true;
 		return dao.getUserByName(first,last);
 	}
 }
