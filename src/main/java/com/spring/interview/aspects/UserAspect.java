@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 public class UserAspect {
 
 
-//	@Pointcut( value = "execution(* com.spring.interview.services.UserService.getUserByName(..))")
-//	public void serviceGetUserByName() {}
+	@Pointcut( value = "execution(* com.spring.interview.services.UserService.getUserByName(..))")
+	public void serviceGetUserByName() {}
 	
-//	@Before("serviceGetUserByName()")
-	@Before(value="execution(* com.spring.interview.services.UserService.getUserByName(..))")
+	@Before("serviceGetUserByName()")
+//	@Before(value="execution(* com.spring.interview.services.UserService.getUserByName(..))")
 	public void beforeService_GetUserByName(JoinPoint joinPoint) {
 		System.out.println("*******Before execute any method of UserService");
 	}
