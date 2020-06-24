@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.interview.entities.User;
 import com.spring.interview.services.GreetingService;
 import com.spring.interview.services.TestService;
+import com.spring.interview.services.UserService;
 
 @Controller
 public class GreetingController {
@@ -23,6 +25,8 @@ public class GreetingController {
 	@Autowired
 	private GreetingService greetingService;
 	
+	
+	
 	@RequestMapping(value="/greeting", method=RequestMethod.GET)
 	public String greeting(@RequestParam("name") String name, ModelMap  model) {
 		List<String> names = testService.getTestData(name);
@@ -32,6 +36,7 @@ public class GreetingController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public @ResponseBody String greeting2() {
+		
 		return greetingService.greet();
 	}
 }

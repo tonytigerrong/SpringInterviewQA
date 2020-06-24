@@ -45,7 +45,6 @@ class GreetingControllerMockmvcTest {
 			ResultActions rs4 = rs3.andExpect(content().string(containsString("Hello")));
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
