@@ -34,6 +34,9 @@ public class GreetingController {
 	public String greeting(@RequestParam("name") String name, ModelMap  model) {
 		List<String> names = testService.getTestData(name);
 		model.put("names",names);
+		if(name.equals("")) {
+			throw new CustomUncheckedException1("error 1002", null);
+		}
 		return "greeting";
 	}
 	
