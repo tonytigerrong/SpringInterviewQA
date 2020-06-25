@@ -1,12 +1,15 @@
 package com.spring.interview.controllers;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,10 +34,11 @@ public class GreetingController {
 	
 	
 	@RequestMapping(value="/greeting", method=RequestMethod.GET)
-	public String greeting(@RequestParam("name") String name, ModelMap  model) {
-		List<String> names = testService.getTestData(name);
+	public String greeting(@RequestParam(required=false) Optional<String> name, ModelMap  model) {
+		List<String> names = testService.getTestData(name.orElseGet(()->"null"));
 		model.put("names",names);
-		if(name.equals("")) {
+		if(name.get().equals("1")) {
+			// Spring 3
 			throw new CustomUncheckedException1("error 1002", null);
 		}
 		return "greeting";
@@ -48,8 +52,12 @@ public class GreetingController {
 		return greetingService.greet();
 	}
 	
-	@ExceptionHandler({CustomCheckedException1.class, CustomUncheckedException1.class})
-	public void handleException() {
-		System.out.println("_-_-_-_Exception Catch");
-	}
+	/**
+	 * only works at @Controller level !!
+	 * Spring 3
+	 */
+//	@ExceptionHandler({CustomCheckedException1.class, CustomUncheckedException1.class})
+//	public void handleException() {
+//		System.out.println("_-_-_-_Exception Catch");
+//	}
 }
