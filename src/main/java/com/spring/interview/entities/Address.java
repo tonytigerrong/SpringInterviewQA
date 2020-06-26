@@ -1,5 +1,9 @@
 package com.spring.interview.entities;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
+@Embeddable
 public class Address {
 	
 	private String street;

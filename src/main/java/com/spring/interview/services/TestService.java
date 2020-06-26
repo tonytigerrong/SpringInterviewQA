@@ -19,12 +19,21 @@ import com.spring.interview.exceptions.CustomUncheckedException1;
 @Service
 @PropertySource("values.properties") // field injection
 public class TestService {
+	//field injection can't use for immutable field
 	@Autowired
 	BaseDao dao;
 
 	//field injection
 	@Value("${name}")
 	String name;
+	
+	//can usefor immutable injection, can be overried by set injection
+	@Autowired
+	public TestService(BaseDao dao) {
+		this.dao = dao;
+	}
+	
+	
 	/**
 	 * called when ApplicationContext load the bean
 	 */
