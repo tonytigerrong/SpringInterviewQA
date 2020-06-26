@@ -26,6 +26,7 @@ import com.spring.interview.exceptions.CustomUncheckedException1;
 import com.spring.interview.services.GreetingService;
 import com.spring.interview.services.TestService;
 import com.spring.interview.services.UserService;
+import com.spring.interview.services.XmlConfigBean;
 
 @Controller
 public class GreetingController {
@@ -35,6 +36,9 @@ public class GreetingController {
 
 	@Autowired
 	private GreetingService greetingService;
+	
+	@Autowired
+	private XmlConfigBean xmlConfigBean;
 
 	@RequestMapping(value = "/spring3uncheckedexception", method = RequestMethod.GET)
 	public String spring3UncheckedException(@RequestParam(required = false) Optional<String> exceptionId)
@@ -62,7 +66,7 @@ public class GreetingController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody String greeting2() throws CustomCheckedException1 {
 		
-		return greetingService.greet();
+		return greetingService.greet() + " , " + xmlConfigBean.toString();
 	}
 
 	@RequestMapping(value="/jerseyform", method=RequestMethod.GET)
