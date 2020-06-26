@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.spring.interview.entities.User;
 import com.spring.interview.services.UserService;
 
-//@Path("/user")
+@Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class JerseyController {
 

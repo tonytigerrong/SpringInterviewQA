@@ -42,7 +42,7 @@ public class BaseDao {
 			return false;
 		}).collect(Collectors.toList());
 		
-		return results == null ? null : results.get(0);
+		return results == null || results.size() ==0 ? null : results.get(0);
 	}
 
 }
