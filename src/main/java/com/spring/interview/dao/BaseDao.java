@@ -6,12 +6,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import com.spring.interview.entities.Address;
 import com.spring.interview.entities.User;
 
 @Repository
+@Scope(value="prototype")
+//@Scope(value= ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class BaseDao {
 	public static List<User> users;
 	static {
