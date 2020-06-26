@@ -1,4 +1,4 @@
-package com.spring.interview.controllers;
+package com.spring.interview.jerseycontrollers;
 
 import java.util.Optional;
 
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.spring.interview.entities.User;
 import com.spring.interview.services.UserService;
 
-@Path("/user")
+//@Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class JerseyController {
 
@@ -27,13 +27,13 @@ public class JerseyController {
 	@GET
 	@Path("/{firstname}/{lastname}/")
 	public User getUser(@PathParam("firstname") String firstName, @PathParam("lastname") String lastName,
-						@QueryParam("isTest") String isTest
+						@QueryParam(value = "isTest") String isTest
 			
 			) {
 		
 		User user = null;
-		
-		if(isTest.equals(""))
+		String test = Optional.ofNullable(isTest).orElse("");
+		if(test.equals(""))
 			user = userService.getUserByName(firstName, lastName);
 		else
 			user = new User("firstname", "lastname", 0, null);

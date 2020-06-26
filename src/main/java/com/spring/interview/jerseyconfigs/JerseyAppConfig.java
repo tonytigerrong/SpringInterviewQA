@@ -1,14 +1,15 @@
-package com.spring.interview.configs;
+package com.spring.interview.jerseyconfigs;
 
 import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
-@Component
-@ApplicationPath("/")
+//@Component
+//@ApplicationPath("/user")
 public class JerseyAppConfig extends ResourceConfig {
 	public JerseyAppConfig() {
-		packages("com.spring.interview.controllers");
+		packages("com.spring.interview.jerseycontrollers");
+//		register(JerseyAppConfig.class);
 	}
 }

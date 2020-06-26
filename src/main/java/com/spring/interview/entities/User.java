@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
+@XmlRootElement
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -14,10 +16,13 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private int    age;
+	
 	@Embedded
 	private Address address;
 	
-	
+	public User() {
+		
+	}
 	public User(String firstName, String lastName, int age, Address address) {
 		this.firstName = firstName;
 		this.lastName = lastName;

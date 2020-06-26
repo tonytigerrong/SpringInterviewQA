@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.interview.entities.User;
 import com.spring.interview.exceptions.CustomCheckedException1;
@@ -63,6 +65,16 @@ public class GreetingController {
 		return greetingService.greet();
 	}
 
+	@RequestMapping(value="/adduser", method=RequestMethod.GET)
+	public ModelAndView  addUser() {
+		return new ModelAndView("UserFormInput", "user", new User("tony","green",0,null));
+	}
+	@RequestMapping(value="/createuser", method=RequestMethod.POST)
+//	public @ResponseBody User createUser(@ModelAttribute("user") User user) {
+	public ResponseEntity<User> createUser(@ModelAttribute("user") User user){
+		System.out.println("first name"+user.getFirstName());
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
 	/**
 	 * only works at @Controller level !! Spring 3
 	 */
