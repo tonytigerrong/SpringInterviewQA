@@ -65,6 +65,10 @@ public class GreetingController {
 		return greetingService.greet();
 	}
 
+	@RequestMapping(value="/jerseyform", method=RequestMethod.GET)
+	public String jerseyForm() {
+		return "JerseyForm";
+	}
 	@RequestMapping(value="/adduser", method=RequestMethod.GET)
 	public ModelAndView  addUser() {
 		return new ModelAndView("UserFormInput", "user", new User("tony","green",0,null));
