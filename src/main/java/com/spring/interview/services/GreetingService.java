@@ -11,11 +11,15 @@ public class GreetingService {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	MyInternationalMessage myInternationalMessage;
+	
 	public String greet() {
 		String firstname = "David";
 		String lastname  = "Green";
 		User user = userService.getUserByName(firstname,lastname);
-		return "Hello "+user.getLastName();
+		String greet = myInternationalMessage.getMessage("hello");
+		return greet+" "+user.getLastName();
 	}
 }
 

@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+hsql/testdb.lck
+hsql/testdb.log
+hsql/testdb.properties
