@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 @Component
@@ -13,8 +15,9 @@ public class ControllerInterceptor implements HandlerInterceptor{
 	   public boolean preHandle
 	      (HttpServletRequest request, HttpServletResponse response, Object handler) 
 	      throws Exception {
-	      
+	      WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
 	      System.out.println("Pre Handle method is Calling"+handler);
+	      System.out.println("Pre Handle method is Calling"+context);
 	      return true;
 	   }
 	   @Override
