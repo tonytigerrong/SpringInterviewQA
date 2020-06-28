@@ -46,6 +46,11 @@ public class GlobalExceptionHandler {//extends ResponseEntityExceptionHandler  {
 		return null;
 	}
 	
+	@ExceptionHandler({AgeValidationException.class})
+	public ResponseEntity<Exception> handleAgeException(Exception e){
+		return new ResponseEntity<Exception>( e, HttpStatus.BAD_REQUEST);
+	}
+	
 	/*
 	@Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,

@@ -26,6 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.interview.entities.User;
+import com.spring.interview.exceptions.AgeValidationException;
 import com.spring.interview.exceptions.CustomCheckedException1;
 import com.spring.interview.exceptions.CustomUncheckedException1;
 import com.spring.interview.services.GreetingService;
@@ -87,6 +88,7 @@ public class GreetingController {
 		System.out.println("User is==>"+user.toString());
 		if(result.hasErrors()) {
 			System.out.println("BindingResult==>"+result);
+			throw new AgeValidationException("");
         }
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
