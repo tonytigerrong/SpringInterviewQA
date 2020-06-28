@@ -32,7 +32,6 @@ import com.spring.interview.services.UserService;
 import com.spring.interview.services.XmlConfigBean;
 
 @Controller
-@Validated
 public class GreetingController {
 
 	@Autowired
@@ -82,8 +81,7 @@ public class GreetingController {
 		return new ModelAndView("UserFormInput", "user", new User("tony","green",0,null));
 	}
 	@RequestMapping(value="/createuser", method=RequestMethod.POST)
-//	public @ResponseBody User createUser(@ModelAttribute("user")  User user) {
-	public ResponseEntity<User> createUser( @RequestBody @ModelAttribute("user") @Valid User user){
+	public @ResponseBody ResponseEntity<User> createUser(@ModelAttribute("user") @Valid User user) {
 		System.out.println("User is==>"+user.toString());
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}

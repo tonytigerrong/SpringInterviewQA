@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.spring.interview.validations.ContactNumberConstraint;
+
 @XmlRootElement
 public class User {
 	@Id
@@ -20,9 +22,10 @@ public class User {
 	@NotNull
 	private String firstName;
 	private String lastName;
-	@Range(min=5, max=15,
-			message="the age should between {min} and {max}, you input "
-	)
+//	@Range(min=5, max=15,
+//			message="the age should between {min} and {max}, you input "
+//	)
+	@ContactNumberConstraint
 	private int    age;
 	
 	@Embedded

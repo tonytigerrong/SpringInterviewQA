@@ -13,8 +13,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 //@ControllerAdvice // has to comment this, conflict with parent class
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
 
 	/*
