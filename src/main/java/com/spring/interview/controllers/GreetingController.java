@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 //import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -81,8 +83,11 @@ public class GreetingController {
 		return new ModelAndView("UserFormInput", "user", new User("tony","green",0,null));
 	}
 	@RequestMapping(value="/createuser", method=RequestMethod.POST)
-	public @ResponseBody ResponseEntity<User> createUser(@ModelAttribute("user") @Valid User user) {
+	public @ResponseBody ResponseEntity<User> createUser(@ModelAttribute("user") @Valid User user,BindingResult result, Model m) {
 		System.out.println("User is==>"+user.toString());
+		if(result.hasErrors()) {
+			System.out.println("BindingResult==>"+result);
+        }
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	/**

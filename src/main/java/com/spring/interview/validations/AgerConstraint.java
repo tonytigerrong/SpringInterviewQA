@@ -8,13 +8,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.spring.interview.validations.impl.ContactNumberValidator;
+import com.spring.interview.validations.impl.AgeValidator;
 @Documented
-@Constraint(validatedBy = ContactNumberValidator.class)
+@Constraint(validatedBy = AgeValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ContactNumberConstraint {
-    String message() default "Invalid phone number";
+public @interface AgerConstraint {
+    String message() default "Invalid number";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

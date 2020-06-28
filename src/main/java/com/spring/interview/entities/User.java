@@ -11,8 +11,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.spring.interview.validations.ContactNumberConstraint;
+import com.spring.interview.validations.AgerConstraint;
 
 @XmlRootElement
 public class User {
@@ -22,10 +23,15 @@ public class User {
 	@NotNull
 	private String firstName;
 	private String lastName;
+	
+	/**
+	 * @Range (embeded validator) validator exception should be catched by ResponseEntityExceptionHandler
+	 * @ContactNumber (custom validator) should be catched by 
+	 */
 //	@Range(min=5, max=15,
 //			message="the age should between {min} and {max}, you input "
 //	)
-	@ContactNumberConstraint
+	@AgerConstraint
 	private int    age;
 	
 	@Embedded
