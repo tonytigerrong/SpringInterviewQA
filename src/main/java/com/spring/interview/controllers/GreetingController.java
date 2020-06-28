@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +32,7 @@ import com.spring.interview.services.UserService;
 import com.spring.interview.services.XmlConfigBean;
 
 @Controller
+@Validated
 public class GreetingController {
 
 	@Autowired
@@ -78,9 +82,9 @@ public class GreetingController {
 		return new ModelAndView("UserFormInput", "user", new User("tony","green",0,null));
 	}
 	@RequestMapping(value="/createuser", method=RequestMethod.POST)
-//	public @ResponseBody User createUser(@ModelAttribute("user") User user) {
-	public ResponseEntity<User> createUser(@ModelAttribute("user") User user){
-		System.out.println("first name"+user.getFirstName());
+//	public @ResponseBody User createUser(@ModelAttribute("user")  User user) {
+	public ResponseEntity<User> createUser( @RequestBody @ModelAttribute("user") @Valid User user){
+		System.out.println("User is==>"+user.toString());
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	/**

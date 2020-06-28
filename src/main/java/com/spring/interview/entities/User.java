@@ -5,16 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Range;
 
 @XmlRootElement
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String firstName;
 	private String lastName;
+	@Range(min=5, max=15,
+			message="the age should between {min} and {max}, you input "
+	)
 	private int    age;
 	
 	@Embedded
