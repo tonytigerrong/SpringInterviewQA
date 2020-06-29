@@ -17,7 +17,7 @@ import com.spring.interview.exceptions.CustomCheckedException1;
 import com.spring.interview.exceptions.CustomUncheckedException1;
 
 @Service
-@PropertySource("values.properties") // field injection
+@PropertySource("classpath:values.properties") // field injection
 public class TestService {
 	//field injection can't use for immutable field
 	@Autowired
@@ -39,7 +39,7 @@ public class TestService {
 	 */
 	@PostConstruct
 	public void init() {
-		System.out.println("init TestService"+name);
+		System.out.println("init TestService, print field injection value:"+name);
 	}
 	
 	/**

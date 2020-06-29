@@ -10,7 +10,9 @@ public class Address {
 	private String city;
 	private String province;
 	private String country;
-	
+	public Address() {
+		
+	}
 	public Address(String street, String city, String province, String country) {
 		
 		this.street = street;

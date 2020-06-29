@@ -1,5 +1,6 @@
 package com.spring.interview.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -44,6 +45,9 @@ public class GreetingController {
 	private GreetingService greetingService;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private XmlConfigBean xmlConfigBean;
 
 	@RequestMapping(value = "/spring3uncheckedexception", method = RequestMethod.GET)
@@ -71,7 +75,12 @@ public class GreetingController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody String greeting2() throws CustomCheckedException1 {
-		
+		userService.saveUserTest();
+		List<User> users = new ArrayList<User>();
+		users = userService.getUsers();
+		System.out.println("JPA: "+users);
+//		List<User> usersHibernate = userService.getUsersHibernate();
+//		System.out.println("Hibernate: "+users);
 		return greetingService.greet() + " , " + xmlConfigBean.toString();
 	}
 
