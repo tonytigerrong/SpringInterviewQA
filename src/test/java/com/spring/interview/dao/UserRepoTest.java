@@ -27,7 +27,7 @@ class UserRepoTest {
 		File file = new File(path);
 		String absolutePath = file.getAbsolutePath();
 		System.out.println(absolutePath);
-		assertTrue(absolutePath.endsWith("src/test/resources"));
+		assertTrue(absolutePath.endsWith("resources"));
 		
 		User user = new User("Smith","Green",11,null);
 		userRepo.save(user);
